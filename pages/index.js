@@ -11,7 +11,7 @@ import ModalFooter from '@material-tailwind/react/ModalFooter';
 import { useState } from 'react';
 import { db } from '../firebase';
 import firebase from 'firebase';
-import {useCollectionOnce} from "react-firebase-hooks/firestore";
+import {useCollection} from "react-firebase-hooks/firestore";
 import DocumentRow from '../components/DocumentRow';
 export default function Home() {
   const [session] = useSession();
@@ -20,7 +20,7 @@ export default function Home() {
   
   const [showModal, setShowModal] = useState(false);
   const [input, setInput] = useState('');
-  const [snapshot] = useCollectionOnce(
+  const [snapshot] = useCollection(
     db.collection("userDocs")
     .doc(session.user.email)
     .collection('docs').orderBy('timestamp', 'desc'));
